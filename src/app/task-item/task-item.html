@@ -1,9 +1,16 @@
 @if (editing) {
   <form class="edit" (ngSubmit)="save()" (keyup.escape)="editing = false">
     <label [for]="'title-' + task().id">Titre</label>
-    <input [id]="'title-' + task().id" name="title" [(ngModel)]="title" />
+    <input
+      [id]="'title-' + task().id"
+      name="title"
+      [(ngModel)]="title"
+      autofocus
+      [attr.aria-invalid]="errors.title ? true : null"
+      [attr.aria-describedby]="errors.title ? 'title-edit-error-' + task().id : null"
+    />
     @if (errors.title) {
-      <p class="error">{{ errors.title }}</p>
+      <p [id]="'title-edit-error-' + task().id" class="error" role="alert">{{ errors.title }}</p>
     }
 
     <label [for]="'description-' + task().id">Description</label>
@@ -20,12 +27,14 @@
       type="date"
       [min]="today"
       [(ngModel)]="dueDate"
+      [attr.aria-invalid]="errors.dueDate ? true : null"
+      [attr.aria-describedby]="errors.dueDate ? 'dueDate-edit-error-' + task().id : null"
     />
     @if (errors.dueDate) {
-      <p class="error">{{ errors.dueDate }}</p>
+      <p [id]="'dueDate-edit-error-' + task().id" class="error" role="alert">{{ errors.dueDate }}</p>
     }
 
-    <button type="submit">Enregistrer</button>
+    <button type="submit" [disabled]="title.trim().length < 3 || !!errors.dueDate">Enregistrer</button>
     <button type="button" (click)="editing = false">Annuler</button>
   </form>
 } @else {
@@ -35,6 +44,7 @@
       [id]="'check-' + task().id"
       [checked]="task().done"
       (change)="toggled.emit(task().id)"
+      [attr.aria-label]="'Marquer la tâche « ' + task().title + ' » comme ' + (task().done ? 'non faite' : 'faite')"
     />
     <div class="task-text">
       <label [for]="'check-' + task().id">{{ task().title }}</label>
@@ -48,7 +58,20 @@
         }
       </small>
     </div>
-    <button type="button" (click)="startEdit()">Modifier</button>
-    <button type="button" class="danger" (click)="remove()">Supprimer</button>
+    <button
+      type="button"
+      (click)="startEdit()"
+      [attr.aria-label]="'Modifier la tâche « ' + task().title + ' »'"
+    >
+      Modifier
+    </button>
+    <button
+      type="button"
+      class="danger"
+      (click)="remove()"
+      [attr.aria-label]="'Supprimer la tâche « ' + task().title + ' »'"
+    >
+      Supprimer
+    </button>
   </div>
 }

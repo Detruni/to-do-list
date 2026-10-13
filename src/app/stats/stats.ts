@@ -11,7 +11,14 @@ import { today } from '../task';
       <!-- KPI : progression globale -->
       <div class="card kpi">
         <h2>Progression</h2>
-        <div class="progress-bar">
+        <div
+          class="progress-bar"
+          role="progressbar"
+          [attr.aria-valuenow]="percent()"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          [attr.aria-label]="'Progression globale : ' + percent() + '%'"
+        >
           <div class="progress-fill" [style.width.%]="percent()"></div>
         </div>
         <p>{{ percent() }} % terminées</p>
