@@ -4,3 +4,102 @@ body {
   color: #222;
   margin: 0;
 }
+
+header {
+  background: #2f5bd3;
+  padding: 12px;
+}
+
+nav a {
+  color: white;
+  margin-right: 16px;
+  text-decoration: none;
+}
+
+nav a.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+main {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 6px;
+  margin-top: 4px;
+  box-sizing: border-box;
+}
+
+input[type='checkbox'] {
+  width: auto;
+}
+
+button {
+  margin-top: 8px;
+  margin-right: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+button.danger {
+  color: #b42318;
+}
+
+.error {
+  color: #b42318;
+  margin: 4px 0;
+}
+
+ul.card {
+  list-style: none;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid #eee;
+  padding: 8px 0;
+}
+
+.task-text {
+  flex: 1;
+}
+
+.task-text label {
+  margin: 0;
+}
+
+.task-text p {
+  margin: 4px 0;
+}
+
+.done label {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.edit {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+}
