@@ -19,5 +19,7 @@ export class Stats {
   total = computed(() => this.taskService.tasks().length);
   done = computed(() => this.taskService.tasks().filter((t) => t.done).length);
   // 0 % si la liste est vide (évite la division par zéro)
-  percent = computed(() => (this.total() === 0 ? 0 : Math.round((this.done() / this.total()) * 100)));
+  percent = computed(() =>
+    this.total() === 0 ? 0 : Math.round((this.done() / this.total()) * 100),
+  );
 }

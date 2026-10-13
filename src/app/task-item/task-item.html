@@ -7,10 +7,20 @@
     }
 
     <label [for]="'description-' + task().id">Description</label>
-    <textarea [id]="'description-' + task().id" name="description" [(ngModel)]="description"></textarea>
+    <textarea
+      [id]="'description-' + task().id"
+      name="description"
+      [(ngModel)]="description"
+    ></textarea>
 
     <label [for]="'dueDate-' + task().id">Échéance</label>
-    <input [id]="'dueDate-' + task().id" name="dueDate" type="date" [min]="today" [(ngModel)]="dueDate" />
+    <input
+      [id]="'dueDate-' + task().id"
+      name="dueDate"
+      type="date"
+      [min]="today"
+      [(ngModel)]="dueDate"
+    />
     @if (errors.dueDate) {
       <p class="error">{{ errors.dueDate }}</p>
     }

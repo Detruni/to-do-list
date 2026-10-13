@@ -7,7 +7,9 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
   template: `
     <header>
       <nav>
-        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Tâches</a>
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+          >Tâches</a
+        >
         <a routerLink="/stats" routerLinkActive="active">Statistiques</a>
       </nav>
     </header>
