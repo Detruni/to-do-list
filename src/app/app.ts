@@ -6,7 +6,10 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
   imports: [RouterOutlet, RouterLink, RouterLinkActive],
   template: `
     <header>
-      <nav>
+      <a routerLink="/" class="brand">
+        <img src="logo.png" alt="Logo" class="logo" />
+      </a>
+      <nav aria-label="Navigation principale">
         <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
           >Tâches</a
         >

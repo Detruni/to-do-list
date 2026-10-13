@@ -1,17 +1,31 @@
 body {
   font-family: Arial, sans-serif;
-  background: #f4f5f7;
+  background: #f1ebe0;
   color: #222;
   margin: 0;
 }
 
 header {
-  background: #2f5bd3;
-  padding: 12px;
+  background: rgba(250, 247, 242, 0.8);
+  padding: 12px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 40px;
+  width: auto;
+  display: block;
 }
 
 nav a {
-  color: white;
+  color: black;
   margin-right: 16px;
   text-decoration: none;
 }
@@ -141,7 +155,7 @@ button.danger {
 .kpi-value {
   font-size: 2rem;
   font-weight: bold;
-  color: #2f5bd3;
+  color: #ff8a3d;
 }
 
 .kpi-warning .kpi-value {
@@ -157,7 +171,7 @@ button.danger {
 }
 
 .progress-fill {
-  background: #2f5bd3;
+  background: #ff8a3d;
   height: 100%;
   border-radius: 8px;
   transition: width 0.3s;
@@ -165,6 +179,6 @@ button.danger {
 
 /* Accessibilite : indicateur de focus visible au clavier */
 :focus-visible {
-  outline: 2px solid #2f5bd3;
+  outline: 2px solid #ff8a3d;
   outline-offset: 2px;
 }
