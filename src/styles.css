@@ -108,6 +108,7 @@ button.danger {
 
 .task-text p {
   margin: 4px 0;
+  white-space: pre-line;
 }
 
 .done label {
@@ -160,4 +161,10 @@ button.danger {
   height: 100%;
   border-radius: 8px;
   transition: width 0.3s;
+}
+
+/* Accessibilite : indicateur de focus visible au clavier */
+:focus-visible {
+  outline: 2px solid #2f5bd3;
+  outline-offset: 2px;
 }

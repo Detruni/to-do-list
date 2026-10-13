@@ -2,25 +2,39 @@
 
 <div class="layout">
   <!-- Colonne gauche : formulaire + filtres -->
-  <aside class="card">
+  <aside class="card" aria-label="Formulaire et filtres">
     <h2>Nouvelle tâche</h2>
     <form (ngSubmit)="addTask()">
       <label for="title">Titre *</label>
-      <input id="title" name="title" [(ngModel)]="title" />
+      <input
+        id="title"
+        name="title"
+        [(ngModel)]="title"
+        [attr.aria-invalid]="title && errors.title ? true : null"
+        [attr.aria-describedby]="title && errors.title ? 'title-error' : null"
+      />
       @if (title && errors.title) {
-        <p class="error">{{ errors.title }}</p>
+        <p id="title-error" class="error" role="alert">{{ errors.title }}</p>
       }
 
       <label for="description">Description</label>
       <textarea id="description" name="description" [(ngModel)]="description"></textarea>
 
       <label for="dueDate">Échéance</label>
-      <input id="dueDate" name="dueDate" type="date" [min]="today" [(ngModel)]="dueDate" />
+      <input
+        id="dueDate"
+        name="dueDate"
+        type="date"
+        [min]="today"
+        [(ngModel)]="dueDate"
+        [attr.aria-invalid]="errors.dueDate ? true : null"
+        [attr.aria-describedby]="errors.dueDate ? 'dueDate-error' : null"
+      />
       @if (errors.dueDate) {
-        <p class="error">{{ errors.dueDate }}</p>
+        <p id="dueDate-error" class="error" role="alert">{{ errors.dueDate }}</p>
       }
 
-      <button type="submit" [disabled]="title.trim().length < 3">Ajouter</button>
+      <button type="submit" [disabled]="title.trim().length < 3 || !!errors.dueDate">Ajouter</button>
     </form>
 
     <hr />
@@ -40,7 +54,7 @@
   </aside>
 
   <!-- Colonne droite : liste avec scroll interne -->
-  <section class="task-scroll card">
+  <section class="task-scroll card" aria-label="Liste des tâches">
     <ul>
       @for (task of visibleTasks(); track task.id) {
         <li>
