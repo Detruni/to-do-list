@@ -108,6 +108,7 @@ button.danger {
 
 .task-text p {
   margin: 4px 0;
+  white-space: pre-line;
 }
 
 .done label {
