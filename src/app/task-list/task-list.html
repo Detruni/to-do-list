@@ -1,0 +1,49 @@
+<h1>Mes tâches</h1>
+
+<form class="card" (ngSubmit)="addTask()">
+  <label for="title">Titre *</label>
+  <input id="title" name="title" [(ngModel)]="title" />
+  @if (title && errors.title) {
+    <p class="error">{{ errors.title }}</p>
+  }
+
+  <label for="description">Description</label>
+  <textarea id="description" name="description" [(ngModel)]="description"></textarea>
+
+  <label for="dueDate">Échéance</label>
+  <input id="dueDate" name="dueDate" type="date" [min]="today" [(ngModel)]="dueDate" />
+  @if (errors.dueDate) {
+    <p class="error">{{ errors.dueDate }}</p>
+  }
+
+  <button type="submit" [disabled]="title.trim().length < 3">Ajouter</button>
+</form>
+
+<div class="card">
+  <p>{{ todoCount() }} à faire / {{ doneCount() }} faites</p>
+
+  <label for="status">Statut</label>
+  <select id="status" [(ngModel)]="status">
+    <option value="all">Toutes</option>
+    <option value="todo">À faire</option>
+    <option value="done">Faites</option>
+  </select>
+
+  <label for="search">Rechercher</label>
+  <input id="search" type="search" [(ngModel)]="query" />
+</div>
+
+<ul class="card">
+  @for (task of visibleTasks(); track task.id) {
+    <li>
+      <app-task-item
+        [task]="task"
+        (toggled)="taskService.toggle($event)"
+        (removed)="taskService.remove($event)"
+        (saved)="taskService.update($event.id, $event.title, $event.description, $event.dueDate)"
+      />
+    </li>
+  } @empty {
+    <li class="empty">Aucune tâche à afficher.</li>
+  }
+</ul>

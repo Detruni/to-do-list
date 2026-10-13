@@ -1,0 +1,20 @@
+# Dépendances (réinstallées avec npm install)
+node_modules/
+
+# Fichiers générés par le build et le cache Angular
+dist/
+.angular/
+out-tsc/
+coverage/
+
+# Logs
+*.log
+
+# Fichiers de l'éditeur et du système
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Variables d'environnement locales
+.env

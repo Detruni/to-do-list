@@ -1,0 +1,54 @@
+@if (editing) {
+  <form class="edit" (ngSubmit)="save()" (keyup.escape)="editing = false">
+    <label [for]="'title-' + task().id">Titre</label>
+    <input [id]="'title-' + task().id" name="title" [(ngModel)]="title" />
+    @if (errors.title) {
+      <p class="error">{{ errors.title }}</p>
+    }
+
+    <label [for]="'description-' + task().id">Description</label>
+    <textarea
+      [id]="'description-' + task().id"
+      name="description"
+      [(ngModel)]="description"
+    ></textarea>
+
+    <label [for]="'dueDate-' + task().id">Échéance</label>
+    <input
+      [id]="'dueDate-' + task().id"
+      name="dueDate"
+      type="date"
+      [min]="today"
+      [(ngModel)]="dueDate"
+    />
+    @if (errors.dueDate) {
+      <p class="error">{{ errors.dueDate }}</p>
+    }
+
+    <button type="submit">Enregistrer</button>
+    <button type="button" (click)="editing = false">Annuler</button>
+  </form>
+} @else {
+  <div class="task" [class.done]="task().done">
+    <input
+      type="checkbox"
+      [id]="'check-' + task().id"
+      [checked]="task().done"
+      (change)="toggled.emit(task().id)"
+    />
+    <div class="task-text">
+      <label [for]="'check-' + task().id">{{ task().title }}</label>
+      @if (task().description) {
+        <p>{{ task().description }}</p>
+      }
+      <small>
+        {{ task().done ? 'Fait' : 'À faire' }}
+        @if (task().dueDate) {
+          – échéance : {{ task().dueDate }}
+        }
+      </small>
+    </div>
+    <button type="button" (click)="startEdit()">Modifier</button>
+    <button type="button" class="danger" (click)="remove()">Supprimer</button>
+  </div>
+}
