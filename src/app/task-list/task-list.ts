@@ -2,10 +2,11 @@ import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { today, validateTask } from '../task';
 import { TaskService } from '../task.service';
+import { TaskItem } from '../task-item/task-item';
 
 @Component({
   selector: 'app-task-list',
-  imports: [FormsModule],
+  imports: [FormsModule, TaskItem],
   templateUrl: './task-list.html',
 })
 export class TaskList {

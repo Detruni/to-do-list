@@ -21,6 +21,15 @@
 
 <ul class="card">
   @for (task of taskService.tasks(); track task.id) {
-    <li>{{ task.title }}</li>
+    <li>
+      <app-task-item
+        [task]="task"
+        (toggled)="taskService.toggle($event)"
+        (removed)="taskService.remove($event)"
+        (saved)="taskService.update($event.id, $event.title, $event.description, $event.dueDate)"
+      />
+    </li>
+  } @empty {
+    <li class="empty">Aucune tâche pour le moment.</li>
   }
 </ul>
