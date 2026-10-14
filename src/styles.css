@@ -24,6 +24,11 @@ header {
   display: block;
 }
 
+nav {
+  display: flex;
+  align-items: center;
+}
+
 nav a {
   color: black;
   margin-right: 16px;
@@ -182,3 +187,69 @@ button.danger {
   outline: 2px solid #ff8a3d;
   outline-offset: 2px;
 }
+
+/* Bouton bascule jour/nuit */
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 4px 8px;
+  margin: 0;
+  vertical-align: middle;
+}
+
+/* Mode sombre (confort visuel et accessibilité) */
+body.dark {
+  background: #1c1c1e;
+  color: #e5e5e7;
+}
+
+body.dark header {
+  background: rgba(30, 30, 32, 0.9);
+  border-bottom: 1px solid #333;
+}
+
+body.dark nav a {
+  color: #e5e5e7;
+}
+
+body.dark .card {
+  background: #2c2c2e;
+  border-color: #3a3a3c;
+}
+
+body.dark input,
+body.dark textarea,
+body.dark select {
+  background: #3a3a3c;
+  color: #fff;
+  border: 1px solid #545458;
+}
+
+body.dark button {
+  background: #3a3a3c;
+  color: #fff;
+  border: 1px solid #545458;
+}
+
+body.dark button.danger {
+  color: #ff6b6b;
+}
+
+body.dark .task {
+  border-bottom-color: #3a3a3c;
+}
+
+body.dark .done label {
+  color: #8e8e93;
+}
+
+body.dark .kpi h2 {
+  color: #aeaeb2;
+}
+
+body.dark .progress-bar {
+  background: #3a3a3c;
+}
+

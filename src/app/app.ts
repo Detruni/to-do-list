@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, effect, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
@@ -14,6 +14,14 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
           >Tâches</a
         >
         <a routerLink="/stats" routerLinkActive="active">Statistiques</a>
+        <button
+          type="button"
+          class="theme-toggle"
+          (click)="toggleTheme()"
+          [attr.aria-label]="isDark() ? 'Activer le mode clair' : 'Activer le mode sombre'"
+        >
+          {{ isDark() ? '☀️' : '🌙' }}
+        </button>
       </nav>
     </header>
     <main>
@@ -21,4 +29,20 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
     </main>
   `,
 })
-export class App {}
+export class App {
+  // Mode sombre mémorisé dans le localStorage
+  isDark = signal(localStorage.getItem('theme') === 'dark');
+
+  constructor() {
+    // Applique le thème au démarrage et à chaque changement
+    effect(() => {
+      const dark = this.isDark();
+      document.body.classList.toggle('dark', dark);
+      localStorage.setItem('theme', dark ? 'dark' : 'light');
+    });
+  }
+
+  toggleTheme() {
+    this.isDark.update((d) => !d);
+  }
+}
