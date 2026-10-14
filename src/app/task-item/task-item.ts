@@ -25,6 +25,7 @@ export class TaskItem {
   }
 
   startEdit() {
+    // Préremplissage du formulaire avec les valeurs actuelles
     this.title = this.task().title;
     this.description = this.task().description ?? '';
     this.dueDate = this.task().dueDate ?? '';
@@ -33,6 +34,7 @@ export class TaskItem {
 
   save() {
     if (this.errors.title || this.errors.dueDate) return;
+    // On transmet les modifications au composant parent
     this.saved.emit({
       id: this.task().id,
       title: this.title,
@@ -43,6 +45,7 @@ export class TaskItem {
   }
 
   remove() {
+    // Confirmation avant suppression
     if (confirm(`Supprimer la tâche « ${this.task().title} » ?`)) {
       this.removed.emit(this.task().id);
     }
