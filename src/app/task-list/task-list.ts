@@ -27,6 +27,7 @@ export class TaskList {
       .filter((t) => t.title.toLowerCase().includes(query))
       .sort(
         (a, b) =>
+          // Les tâches sans échéance sont placées à la fin (9999-12-31)
           (a.dueDate ?? '9999-12-31').localeCompare(b.dueDate ?? '9999-12-31') ||
           a.title.localeCompare(b.title),
       );

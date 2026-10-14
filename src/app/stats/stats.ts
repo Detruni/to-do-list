@@ -47,9 +47,11 @@ export class Stats {
 
   total = computed(() => this.taskService.tasks().length);
   done = computed(() => this.taskService.tasks().filter((t) => t.done).length);
+  // 0 % si la liste est vide (évite la division par zéro)
   percent = computed(() =>
     this.total() === 0 ? 0 : Math.round((this.done() / this.total()) * 100),
   );
+  // Tâches non terminées avec une date passée
   overdue = computed(
     () =>
       this.taskService
@@ -57,7 +59,7 @@ export class Stats {
         .filter((t) => !t.done && t.dueDate && t.dueDate < today()).length,
   );
 
-  // Liste de KPIs affichés dynamiquement avec @for
+  // Données des cartes affichées avec le @for
   kpis = computed(() => [
     { label: 'Total', value: this.total() },
     { label: 'Faites', value: this.done() },
